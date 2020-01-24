@@ -37,11 +37,20 @@ type xInputState struct {
 	thumbRY      int16
 }
 
+// Deadzones
+const (
+	triggerDeadzone = 30
+)
+
 func uint8ToFloat(uint uint8) float32 {
+	if uint < triggerDeadzone {
+		return 0
+	}
 	return float32(uint) / float32(0xFF)
 }
 
 func int16ToFloat(int int16) float32 {
+	// TODO deadzone
 	float := float32(int) / float32(0x7FFF)
 	if float < -1 {
 		return -1
