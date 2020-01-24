@@ -1,54 +1,54 @@
 package main
 
 import (
-	xInput "go-xinput"
+	xinput "go-xinput"
 	"log"
 )
 
 func main() {
-	if xInput.LoadError != nil {
-		log.Fatalln(xInput.LoadError)
+	if xinput.LoadError != nil {
+		log.Fatalln(xinput.LoadError)
 	}
 
 	log.Println("Controller:")
-	batteryInfo, err := xInput.GetControllerBatteryInformation(xInput.Controller1)
+	batteryInfo, err := xinput.GetControllerBatteryInformation(xinput.Controller1)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	printBatteryInfo(batteryInfo)
 
 	log.Println("Headset:")
-	batteryInfo, err = xInput.GetHeadsetBatteryInformation(xInput.Controller1)
+	batteryInfo, err = xinput.GetHeadsetBatteryInformation(xinput.Controller1)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	printBatteryInfo(batteryInfo)
 }
 
-func printBatteryInfo(batteryInfo *xInput.BatteryInformation) {
+func printBatteryInfo(batteryInfo *xinput.BatteryInformation) {
 	var batteryType string
 	switch batteryInfo.BatteryType {
-	case xInput.Disconnected:
+	case xinput.Disconnected:
 		batteryType = "Disconnected"
-	case xInput.Wired:
+	case xinput.Wired:
 		batteryType = "Wired"
-	case xInput.Alkaline:
+	case xinput.Alkaline:
 		batteryType = "Alkaline"
-	case xInput.NiMH:
+	case xinput.NiMH:
 		batteryType = "NiMH"
-	case xInput.Unknown:
+	case xinput.Unknown:
 		batteryType = "Unknown"
 	}
 
 	var batteryLevel string
 	switch batteryInfo.BatteryLevel {
-	case xInput.Empty:
+	case xinput.Empty:
 		batteryLevel = "Empty"
-	case xInput.Low:
+	case xinput.Low:
 		batteryLevel = "Low"
-	case xInput.Medium:
+	case xinput.Medium:
 		batteryLevel = "Medium"
-	case xInput.Full:
+	case xinput.Full:
 		batteryLevel = "Full"
 	}
 

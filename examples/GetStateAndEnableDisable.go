@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
-	xInput "go-xinput"
+	xinput "go-xinput"
 	"log"
 	"os"
 	"strings"
@@ -12,15 +12,15 @@ import (
 )
 
 func main() {
-	if xInput.LoadError != nil {
-		log.Fatalln(xInput.LoadError)
+	if xinput.LoadError != nil {
+		log.Fatalln(xinput.LoadError)
 	}
 
 	go monitorInput()
 
-	var oldState *xInput.ControllerState
+	var oldState *xinput.ControllerState
 	for {
-		newState, err := xInput.GetControllerState(xInput.Controller1)
+		newState, err := xinput.GetControllerState(xinput.Controller1)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -49,13 +49,13 @@ func monitorInput() {
 }
 
 func enable() {
-	if err := xInput.EnableInput(); err != nil {
+	if err := xinput.EnableInput(); err != nil {
 		log.Fatalln(err)
 	}
 }
 
 func disable() {
-	if err := xInput.DisableInput(); err != nil {
+	if err := xinput.DisableInput(); err != nil {
 		log.Fatalln(err)
 	}
 }
