@@ -6,20 +6,22 @@ import (
 )
 
 const (
-	xInputGamepadDpadUp        = 0x0001
-	xInputGamepadDpadDown      = 0x0002
-	xInputGamepadDpadLeft      = 0x0004
-	xInputGamepadDpadRight     = 0x0008
-	xInputGamepadStart         = 0x0010
-	xInputGamepadBack          = 0x0020
-	xInputGamepadLeftThumb     = 0x0040
-	xInputGamepadRightThumb    = 0x0080
-	xInputGamepadLeftShoulder  = 0x0100
-	xInputGamepadRightShoulder = 0x0200
-	xInputGamepadA             = 0x1000
-	xInputGamepadB             = 0x2000
-	xInputGamepadX             = 0x4000
-	xInputGamepadY             = 0x8000
+	xInputGamepadDpadUp        = 0b1
+	xInputGamepadDpadDown      = 0b10
+	xInputGamepadDpadLeft      = 0b100
+	xInputGamepadDpadRight     = 0b1000
+	xInputGamepadStart         = 0b10000
+	xInputGamepadBack          = 0b100000
+	xInputGamepadLeftThumb     = 0b1000000
+	xInputGamepadRightThumb    = 0b10000000
+	xInputGamepadLeftShoulder  = 0b100000000
+	xInputGamepadRightShoulder = 0b1000000000
+	xInputGuide                = 0b10000000000
+	xInputUnknown              = 0b100000000000
+	xInputGamepadA             = 0b1000000000000
+	xInputGamepadB             = 0b10000000000000
+	xInputGamepadX             = 0b100000000000000
+	xInputGamepadY             = 0b1000000000000000
 )
 
 type xInputGamepad struct {

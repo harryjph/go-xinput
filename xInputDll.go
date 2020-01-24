@@ -1,6 +1,8 @@
 package go_xinput
 
-import "syscall"
+import (
+	"syscall"
+)
 
 var (
 	dll       *syscall.LazyDLL
@@ -36,8 +38,14 @@ func init() {
 	xInputGetCapabilities = loadProc("XInputGetCapabilities")
 	xInputGetDSoundAudioDeviceGuids = loadProc("XInputGetDSoundAudioDeviceGuids")
 	xInputGetKeystroke = loadProc("XInputGetKeystroke")
-	xInputGetState = loadProc("XInputGetState")
 	xInputSetState = loadProc("XInputSetState")
+
+	// TODO you're supposed to (in C) call GetProcAddress(HMODULE(hGetProcIDDLL), (LPCSTR)100);... This doesn't seem to work here. Does it only work with xinput 1.3?
+	xInputGetState = loadProc(string(100))
+	if xInputGetState == nil {
+		//log.Println("Failed to load guide-supporting GetState")
+		xInputGetState = loadProc("XInputGetState")
+	}
 }
 
 func loadDll(name string) (*syscall.LazyDLL, error) {
