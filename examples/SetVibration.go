@@ -1,7 +1,7 @@
 package main
 
 import (
-	xInput "go-xInput"
+	xInput "go-xinput"
 	"log"
 	"time"
 )

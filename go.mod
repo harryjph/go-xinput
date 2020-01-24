@@ -1,3 +1,3 @@
-module go-xInput
+module go-xinput
 
 go 1.13
