@@ -3,17 +3,19 @@ package go_xinput
 import "syscall"
 
 var (
-	dll *syscall.LazyDLL
+	dll       *syscall.LazyDLL
 	LoadError error
 
 	xInputEnable *syscall.LazyProc
-	xInputGetAudioDeviceIds *syscall.LazyProc
+	// Only available in XInput >= 1.4
+	xInputGetAudioDeviceIds     *syscall.LazyProc
 	xInputGetBatteryInformation *syscall.LazyProc
-	xInputGetCapabilities *syscall.LazyProc
+	xInputGetCapabilities       *syscall.LazyProc
+	// Only available in XInput < 1.4
 	xInputGetDSoundAudioDeviceGuids *syscall.LazyProc
-	xInputGetKeystroke *syscall.LazyProc
-	xInputGetState *syscall.LazyProc
-	xInputSetState *syscall.LazyProc
+	xInputGetKeystroke              *syscall.LazyProc
+	xInputGetState                  *syscall.LazyProc
+	xInputSetState                  *syscall.LazyProc
 )
 
 func init() {
