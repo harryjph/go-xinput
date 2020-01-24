@@ -31,3 +31,27 @@ func (index ControllerIndex) String() string {
 		return fmt.Sprintf("Unrecognized Controller Index: %02x", uint8(index))
 	}
 }
+
+func ControllerIsConnected(index ControllerIndex) bool {
+	_, err := GetControllerState(index)
+	return err == nil
+}
+
+func GetConnectedControllers() []ControllerIndex {
+	var connectedControllers []ControllerIndex
+
+	if ControllerIsConnected(Controller1) {
+		connectedControllers = append(connectedControllers, Controller1)
+	}
+	if ControllerIsConnected(Controller2) {
+		connectedControllers = append(connectedControllers, Controller2)
+	}
+	if ControllerIsConnected(Controller3) {
+		connectedControllers = append(connectedControllers, Controller3)
+	}
+	if ControllerIsConnected(Controller4) {
+		connectedControllers = append(connectedControllers, Controller4)
+	}
+
+	return connectedControllers
+}
