@@ -7,8 +7,8 @@ const (
 	xInputControllerIndex4 = 3
 )
 
-func (controllerIndex ControllerIndex) toUserIndex() (uintptr, error) {
-	switch controllerIndex {
+func (index ControllerIndex) toUserIndex() (uintptr, error) {
+	switch index {
 	case Controller1:
 		return xInputControllerIndex1, nil
 	case Controller2:

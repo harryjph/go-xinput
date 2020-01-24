@@ -1,5 +1,7 @@
 package go_xinput
 
+import "fmt"
+
 // https://docs.microsoft.com/en-us/windows/win32/xinput/xinput-and-controller-subtypes
 type ControllerType uint8
 
@@ -16,6 +18,35 @@ const (
 	DrumKit
 	ArcadePad
 )
+
+func (controllerType ControllerType) String() string {
+	switch controllerType {
+	case UnknownType:
+		return "Unknown"
+	case Gamepad:
+		return "Gamepad"
+	case Wheel:
+		return "Wheel"
+	case ArcadeStick:
+		return "Arcade Stick"
+	case FlightStick:
+		return "Flight Stick"
+	case DancePad:
+		return "Dance Pad"
+	case Guitar:
+		return "Guitar"
+	case GuitarAlternative:
+		return "Alternative Guitar"
+	case GuitarBass:
+		return "Bass Guitar"
+	case DrumKit:
+		return "Drum Kit"
+	case ArcadePad:
+		return "Arcade Pad"
+	default:
+		return fmt.Sprintf("Unrecognized Controller Type: %02x", uint8(controllerType))
+	}
+}
 
 type ControllerFeatures struct {
 	VoiceSupported     bool

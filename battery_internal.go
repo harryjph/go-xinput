@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	xInputBatteryDevtypeGamepad = 0x00
+	xInputBatteryDevtypeGamepad = 0b00
 	xInputBatteryDevtypeHeadset = 0x01
 
 	xInputBatteryTypeDisconnected = 0x00
