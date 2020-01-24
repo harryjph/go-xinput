@@ -2,20 +2,20 @@ package main
 
 import (
 	"encoding/json"
-	xinput "go-xinput"
+	xInput "go-xInput"
 	"log"
 	"os"
 	"time"
 )
 
 func main() {
-	if xinput.LoadError != nil {
-		log.Fatalln(xinput.LoadError)
+	if xInput.LoadError != nil {
+		log.Fatalln(xInput.LoadError)
 	}
 
-	var oldState *xinput.ControllerState
+	var oldState *xInput.ControllerState
 	for {
-		newState, err := xinput.GetControllerState(xinput.Controller1)
+		newState, err := xInput.GetControllerState(xInput.Controller1)
 		if err != nil {
 			log.Fatalln(err)
 		}

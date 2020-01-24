@@ -7,44 +7,55 @@ import (
 )
 
 const (
-	xinputBatteryDevtypeGamepad   = 0x00
-	xinputBatteryDevtypeHeadset   = 0x01
+	xInputBatteryDevtypeGamepad = 0x00
+	xInputBatteryDevtypeHeadset = 0x01
 
-	xinputBatteryTypeDisconnected = 0x00
-	xinputBatteryTypeWired        = 0x01
-	xinputBatteryTypeAlkaline     = 0x02
-	xinputBatteryTypeNimh         = 0x03
-	xinputBatteryTypeUnknown      = 0xFF
+	xInputBatteryTypeDisconnected = 0x00
+	xInputBatteryTypeWired        = 0x01
+	xInputBatteryTypeAlkaline     = 0x02
+	xInputBatteryTypeNimh         = 0x03
+	xInputBatteryTypeUnknown      = 0xFF
 
-	xinputBatteryLevelEmpty       = 0x00
-	xinputBatteryLevelLow         = 0x01
-	xinputBatteryLevelMedium      = 0x02
-	xinputBatteryLevelFull        = 0x03
+	xInputBatteryLevelEmpty  = 0x00
+	xInputBatteryLevelLow    = 0x01
+	xInputBatteryLevelMedium = 0x02
+	xInputBatteryLevelFull   = 0x03
 )
 
-type xinputBatteryInformation struct {
-	batteryType uint8
+type xInputBatteryInformation struct {
+	batteryType  uint8
 	batteryLevel uint8
 }
 
-func (info *xinputBatteryInformation) toBatteryInformation() (*BatteryInformation, error) {
+func (info *xInputBatteryInformation) toBatteryInformation() (*BatteryInformation, error) {
 	var batteryType BatteryType
 	switch info.batteryType {
-	case xinputBatteryTypeDisconnected: batteryType = Disconnected
-	case xinputBatteryTypeWired: batteryType = Wired
-	case xinputBatteryTypeAlkaline: batteryType = Alkaline
-	case xinputBatteryTypeNimh: batteryType = NiMH
-	case xinputBatteryTypeUnknown: batteryType = Unknown
-	default: return nil, fmt.Errorf("unrecognized battery type: %02x", info.batteryType)
+	case xInputBatteryTypeDisconnected:
+		batteryType = Disconnected
+	case xInputBatteryTypeWired:
+		batteryType = Wired
+	case xInputBatteryTypeAlkaline:
+		batteryType = Alkaline
+	case xInputBatteryTypeNimh:
+		batteryType = NiMH
+	case xInputBatteryTypeUnknown:
+		batteryType = Unknown
+	default:
+		return nil, fmt.Errorf("unrecognized battery type: %02x", info.batteryType)
 	}
 
 	var batteryLevel BatteryLevel
 	switch info.batteryLevel {
-	case xinputBatteryLevelEmpty: batteryLevel = Empty
-	case xinputBatteryLevelLow: batteryLevel = Low
-	case xinputBatteryLevelMedium: batteryLevel = Medium
-	case xinputBatteryLevelFull: batteryLevel = Full
-	default: return nil, fmt.Errorf("unrecognized battery level: %02x", info.batteryLevel)
+	case xInputBatteryLevelEmpty:
+		batteryLevel = Empty
+	case xInputBatteryLevelLow:
+		batteryLevel = Low
+	case xInputBatteryLevelMedium:
+		batteryLevel = Medium
+	case xInputBatteryLevelFull:
+		batteryLevel = Full
+	default:
+		return nil, fmt.Errorf("unrecognized battery level: %02x", info.batteryLevel)
 	}
 
 	return &BatteryInformation{
@@ -61,10 +72,10 @@ func getBatteryInformation(controllerIndex ControllerIndex, devtype uintptr) (*B
 	if err != nil {
 		return nil, err
 	}
-	var xinputBatteryInformation xinputBatteryInformation
-	r, _, _ := xInputGetBatteryInformation.Call(userIndex, devtype, uintptr(unsafe.Pointer(&xinputBatteryInformation)))
+	var xInputBatteryInformation xInputBatteryInformation
+	r, _, _ := xInputGetBatteryInformation.Call(userIndex, devtype, uintptr(unsafe.Pointer(&xInputBatteryInformation)))
 	if r == 0 {
-		 return xinputBatteryInformation.toBatteryInformation()
+		return xInputBatteryInformation.toBatteryInformation()
 	} else {
 		return nil, syscall.Errno(r)
 	}

@@ -1,4 +1,4 @@
-package xinput
+package xInput
 
 import (
 	"syscall"
@@ -62,16 +62,16 @@ func init() {
 }
 
 func load() error {
-	dll, err := syscall.LoadDLL("xinput1_4.dll")
+	dll, err := syscall.LoadDLL("xInput1_4.dll")
 	defer func() {
 		if err != nil {
 			dll.Release()
 		}
 	}()
 	if err != nil {
-		dll, err = syscall.LoadDLL("xinput1_3.dll")
+		dll, err = syscall.LoadDLL("xInput1_3.dll")
 		if err != nil {
-			dll, err = syscall.LoadDLL("xinput9_1_0.dll")
+			dll, err = syscall.LoadDLL("xInput9_1_0.dll")
 			return err
 		}
 	}

@@ -6,28 +6,28 @@ import (
 )
 
 const (
-	xinputGamepadDpadUp        = 0x0001
-	xinputGamepadDpadDown      = 0x0002
-	xinputGamepadDpadLeft      = 0x0004
-	xinputGamepadDpadRight     = 0x0008
-	xinputGamepadStart         = 0x0010
-	xinputGamepadBack          = 0x0020
-	xinputGamepadLeftThumb     = 0x0040
-	xinputGamepadRightThumb    = 0x0080
-	xinputGamepadLeftShoulder  = 0x0100
-	xinputGamepadRightShoulder = 0x0200
-	xinputGamepadA             = 0x1000
-	xinputGamepadB             = 0x2000
-	xinputGamepadX             = 0x4000
-	xinputGamepadY             = 0x8000
+	xInputGamepadDpadUp        = 0x0001
+	xInputGamepadDpadDown      = 0x0002
+	xInputGamepadDpadLeft      = 0x0004
+	xInputGamepadDpadRight     = 0x0008
+	xInputGamepadStart         = 0x0010
+	xInputGamepadBack          = 0x0020
+	xInputGamepadLeftThumb     = 0x0040
+	xInputGamepadRightThumb    = 0x0080
+	xInputGamepadLeftShoulder  = 0x0100
+	xInputGamepadRightShoulder = 0x0200
+	xInputGamepadA             = 0x1000
+	xInputGamepadB             = 0x2000
+	xInputGamepadX             = 0x4000
+	xInputGamepadY             = 0x8000
 )
 
-type xinputGamepad struct {
+type xInputGamepad struct {
 	packetNumber uint32
-	state        xinputState
+	state        xInputState
 }
 
-type xinputState struct {
+type xInputState struct {
 	buttons      uint16
 	leftTrigger  uint8
 	rightTrigger uint8
@@ -52,23 +52,23 @@ func int16ToFloat(int int16) float32 {
 	return float
 }
 
-func (state *xinputState) toControllerState() *ControllerState {
+func (state *xInputState) toControllerState() *ControllerState {
 	return &ControllerState{
 		Buttons: Buttons{
-			A:             state.buttons&xinputGamepadA != 0,
-			B:             state.buttons&xinputGamepadB != 0,
-			X:             state.buttons&xinputGamepadX != 0,
-			Y:             state.buttons&xinputGamepadY != 0,
-			DpadUp:        state.buttons&xinputGamepadDpadUp != 0,
-			DpadDown:      state.buttons&xinputGamepadDpadDown != 0,
-			DpadLeft:      state.buttons&xinputGamepadDpadLeft != 0,
-			DpadRight:     state.buttons&xinputGamepadDpadRight != 0,
-			LeftShoulder:  state.buttons&xinputGamepadLeftShoulder != 0,
-			RightShoulder: state.buttons&xinputGamepadRightShoulder != 0,
-			LeftJoystick:  state.buttons&xinputGamepadLeftThumb != 0,
-			RightJoystick: state.buttons&xinputGamepadRightThumb != 0,
-			Start:         state.buttons&xinputGamepadStart != 0,
-			Back:          state.buttons&xinputGamepadBack != 0,
+			A:             state.buttons&xInputGamepadA != 0,
+			B:             state.buttons&xInputGamepadB != 0,
+			X:             state.buttons&xInputGamepadX != 0,
+			Y:             state.buttons&xInputGamepadY != 0,
+			DpadUp:        state.buttons&xInputGamepadDpadUp != 0,
+			DpadDown:      state.buttons&xInputGamepadDpadDown != 0,
+			DpadLeft:      state.buttons&xInputGamepadDpadLeft != 0,
+			DpadRight:     state.buttons&xInputGamepadDpadRight != 0,
+			LeftShoulder:  state.buttons&xInputGamepadLeftShoulder != 0,
+			RightShoulder: state.buttons&xInputGamepadRightShoulder != 0,
+			LeftJoystick:  state.buttons&xInputGamepadLeftThumb != 0,
+			RightJoystick: state.buttons&xInputGamepadRightThumb != 0,
+			Start:         state.buttons&xInputGamepadStart != 0,
+			Back:          state.buttons&xInputGamepadBack != 0,
 		},
 		LeftJoystick: Joystick{
 			X: int16ToFloat(state.thumbLX),
@@ -93,7 +93,7 @@ func getState(controllerIndex ControllerIndex) (*ControllerState, error) {
 		return nil, err
 	}
 
-	var gamepad xinputGamepad
+	var gamepad xInputGamepad
 	r, _, _ := xInputGetState.Call(userIndex, uintptr(unsafe.Pointer(&gamepad)))
 	if r == 0 {
 		return gamepad.state.toControllerState(), nil

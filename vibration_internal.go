@@ -6,7 +6,7 @@ import (
 	"unsafe"
 )
 
-type xinputVibration struct {
+type xInputVibration struct {
 	leftMotorSpeed  uint16
 	rightMotorSpeed uint16
 }
@@ -40,7 +40,7 @@ func setState(controllerIndex ControllerIndex, leftMotorSpeed float32, rightMoto
 		return err
 	}
 
-	r, _, _ := xInputSetState.Call(userIndex, uintptr(unsafe.Pointer(&xinputVibration{
+	r, _, _ := xInputSetState.Call(userIndex, uintptr(unsafe.Pointer(&xInputVibration{
 		leftMotorSpeed:  leftMotorSpeedInt,
 		rightMotorSpeed: rightMotorSpeedInt,
 	})))

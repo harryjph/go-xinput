@@ -1,6 +1,7 @@
 package go_xinput
 
 type BatteryType uint8
+
 const (
 	Disconnected BatteryType = iota
 	Wired
@@ -10,6 +11,7 @@ const (
 )
 
 type BatteryLevel uint8
+
 const (
 	Empty BatteryLevel = iota
 	Low
@@ -18,14 +20,14 @@ const (
 )
 
 type BatteryInformation struct {
-	BatteryType BatteryType
+	BatteryType  BatteryType
 	BatteryLevel BatteryLevel
 }
 
 func GetControllerBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
-	return getBatteryInformation(controllerIndex, xinputBatteryDevtypeGamepad)
+	return getBatteryInformation(controllerIndex, xInputBatteryDevtypeGamepad)
 }
 
 func GetHeadsetBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
-	return getBatteryInformation(controllerIndex, xinputBatteryDevtypeHeadset)
+	return getBatteryInformation(controllerIndex, xInputBatteryDevtypeHeadset)
 }
