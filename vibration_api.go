@@ -1,5 +1,10 @@
 package go_xinput
 
-func SetVibration(controllerIndex ControllerIndex, lowFrequencyAmount float32, highFrequencyAmount float32) error {
-	return setState(controllerIndex, lowFrequencyAmount, highFrequencyAmount)
+type ControllerVibration struct {
+	LowFrequencyLevel  float32
+	HighFrequencyLevel float32
+}
+
+func SetVibration(controllerIndex ControllerIndex, vibration ControllerVibration) error {
+	return setState(controllerIndex, vibration.HighFrequencyLevel, vibration.LowFrequencyLevel)
 }

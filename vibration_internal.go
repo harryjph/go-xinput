@@ -11,6 +11,17 @@ type xInputVibration struct {
 	rightMotorSpeed uint16
 }
 
+func (vibration *xInputVibration) toControllerVibration() ControllerVibration {
+	return ControllerVibration{
+		LowFrequencyLevel:  uint16ToFloat(vibration.leftMotorSpeed),
+		HighFrequencyLevel: uint16ToFloat(vibration.rightMotorSpeed),
+	}
+}
+
+func uint16ToFloat(uint uint16) float32 {
+	return float32(uint) / float32(uint16(0xFFFF))
+}
+
 func floatToUint16(float float32) (uint16, error) {
 	if float < 0 {
 		return 0, fmt.Errorf("motor speed value must be 0-1, was %.3f", float)
