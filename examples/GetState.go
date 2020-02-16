@@ -21,6 +21,7 @@ func main() {
 		}
 		if oldState == nil || *newState != *oldState {
 			if jsonData, err := json.Marshal(newState); err != nil {
+				fmt.Println()
 				log.Fatalln(err)
 			} else {
 				fmt.Printf("%s\r", jsonData)
