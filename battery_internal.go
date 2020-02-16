@@ -1,3 +1,5 @@
+//+build windows
+
 package go_xinput
 
 import (
@@ -62,6 +64,14 @@ func (info *xInputBatteryInformation) toBatteryInformation() (*BatteryInformatio
 		BatteryType:  batteryType,
 		BatteryLevel: batteryLevel,
 	}, nil
+}
+
+func getControllerBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
+	return getBatteryInformation(controllerIndex, xInputBatteryDevtypeGamepad)
+}
+
+func getHeadsetBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
+	return getBatteryInformation(controllerIndex, xInputBatteryDevtypeHeadset)
 }
 
 func getBatteryInformation(controllerIndex ControllerIndex, devtype uintptr) (*BatteryInformation, error) {

@@ -1,3 +1,5 @@
+//+build windows
+
 package go_xinput
 
 import (
@@ -25,7 +27,7 @@ const (
 	xInputCapsNoNavigation   = 0x0010
 )
 
-func DevSubTypeToControllerType(subtype uint8) ControllerType {
+func devSubTypeToControllerType(subtype uint8) ControllerType {
 	switch subtype {
 	case xInputDevSubTypeUnknown:
 		return UnknownType
@@ -64,7 +66,7 @@ type xInputCapabilities struct {
 
 func (capabilities *xInputCapabilities) toControllerInfo() *ControllerInfo {
 	return &ControllerInfo{
-		Subtype: DevSubTypeToControllerType(capabilities.subtype),
+		Subtype: devSubTypeToControllerType(capabilities.subtype),
 		Features: ControllerFeatures{
 			VoiceSupported:         capabilities.flags&xInputCapsVoiceSupported != 0,
 			VibrationSupported:     capabilities.flags&xInputCapsFfbSupported != 0,

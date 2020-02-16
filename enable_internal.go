@@ -1,3 +1,5 @@
+//+build windows
+
 package go_xinput
 
 import "syscall"

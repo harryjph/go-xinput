@@ -59,9 +59,9 @@ type BatteryInformation struct {
 }
 
 func GetControllerBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
-	return getBatteryInformation(controllerIndex, xInputBatteryDevtypeGamepad)
+	return getControllerBatteryInformation(controllerIndex)
 }
 
 func GetHeadsetBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
-	return getBatteryInformation(controllerIndex, xInputBatteryDevtypeHeadset)
+	return getHeadsetBatteryInformation(controllerIndex)
 }
