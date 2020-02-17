@@ -1,6 +1,6 @@
 //+build !windows
 
-package go_xinput
+package xinput
 
 func setEnabled(enabled bool) error {
 	return UnsupportedOS

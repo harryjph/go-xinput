@@ -1,6 +1,6 @@
 //+build windows
 
-package go_xinput
+package xinput
 
 const (
 	xInputControllerIndex1 = 0

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	xinput "go-xinput"
+	"github.com/harry1453/go-xinput/xinput"
 	"log"
 )
 

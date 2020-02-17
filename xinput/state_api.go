@@ -1,4 +1,4 @@
-package go_xinput
+package xinput
 
 type Joystick struct {
 	X float32

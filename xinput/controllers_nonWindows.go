@@ -1,5 +1,5 @@
 //+build !windows
 
-package go_xinput
+package xinput
 
 // All internal, no need for nonWindows version

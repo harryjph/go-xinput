@@ -1,6 +1,6 @@
 //+build !windows
 
-package go_xinput
+package xinput
 
 func getControllerBatteryInformation(controllerIndex ControllerIndex) (*BatteryInformation, error) {
 	return nil, UnsupportedOS

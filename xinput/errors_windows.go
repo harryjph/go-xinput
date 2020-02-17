@@ -1,6 +1,6 @@
 //+build windows
 
-package go_xinput
+package xinput
 
 var (
 	LoadError error

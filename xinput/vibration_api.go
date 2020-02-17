@@ -1,4 +1,4 @@
-package go_xinput
+package xinput
 
 type ControllerVibration struct {
 	LowFrequencyLevel  float32

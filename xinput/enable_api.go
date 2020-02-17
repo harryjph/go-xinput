@@ -1,4 +1,4 @@
-package go_xinput
+package xinput
 
 func DisableInput() error {
 	return setEnabled(false)

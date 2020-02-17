@@ -1,4 +1,4 @@
-package go_xinput
+package xinput
 
 import "fmt"
 
